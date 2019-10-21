@@ -1,0 +1,35 @@
+var drop = [];
+
+function setup() {
+  createCanvas(800, 500);
+  for (var i = 0; i < 150; i++) {
+    drop[i] = new Drop();
+  }
+}
+  function draw() {
+    background(100);
+    for (var i = 0; i < 150; i++) {
+      drop[i].show();
+      drop[i].update();
+    }
+  }
+
+  function Drop() {
+    this.x = random(0, width);
+    this.y = random(0, -height);
+
+    this.show = function() {
+      noStroke();
+      fill(255);
+      ellipse(this.x, this.y, 2, 10);
+    }
+
+    this.update = function() {
+      this.speed = random(5, 20);
+      this.y = this.y + this.speed;
+      
+      if(this.y > height) {
+        this.y = random(0, -height);
+      }
+    }
+  }
